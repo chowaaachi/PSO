@@ -22,12 +22,12 @@ namespace PSO
         List<Particle> particles = new List<Particle>();
 
         [SerializeField, Header("最良地点")]
-        public Transform target = null;
+        public Transform target = default;
 
-        [NonSerialized]
-        public Vector3 GlobalBestPosition = Vector3.zero;
-        [NonSerialized]
-        public float GlobalBestPositionScore = float.MinValue;
+        [SerializeField, Header("粒子群最適地点")]
+        public Vector3 GlobalBestPosition      = default;
+        [SerializeField, Header("粒子群最適地点スコア")]
+        public float   GlobalBestPositionScore = 0f;
 
         [ContextMenu("GetParticles")]
         public void GetParticles()
