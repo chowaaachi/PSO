@@ -25,9 +25,10 @@ namespace PSO
         public Transform target = default;
 
         [SerializeField, Header("粒子群最適地点")]
-        public Vector3 GlobalBestPosition      = default;
-        [SerializeField, Header("粒子群最適地点スコア")]
-        public float   GlobalBestPositionScore = 0f;
+        public Transform GlobalBestPositionTransform = default;
+
+        [NonSerialized]
+        public float     GlobalBestPositionScore     = 0f;
 
         [ContextMenu("GetParticles")]
         public void GetParticles()
@@ -82,8 +83,8 @@ namespace PSO
         {
             if (newBestPositionScore > Instance.GlobalBestPositionScore)
             {
-                Instance.GlobalBestPosition      = newBestPosition;
-                Instance.GlobalBestPositionScore = newBestPositionScore;
+                Instance.GlobalBestPositionTransform.position = newBestPosition;
+                Instance.GlobalBestPositionScore     = newBestPositionScore;
 
                 Debug.Log("Updated!");
                 Debug.Log(newBestPosition);

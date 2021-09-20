@@ -59,7 +59,7 @@ namespace PSO
         /// </summary>
         void updateVelocity()
         {
-            var globalBestPosition = ParticleManager.Instance.GlobalBestPosition;
+            var globalBestPosition = ParticleManager.Instance.GlobalBestPositionTransform.position;
 
             currentVelocity = (ParticleManager.Instance.INERTIA_COEFFICIENT       * currentVelocity)                                                              +
                               (ParticleManager.Instance.PERSONAL_BEST_COEFFICIENT * Random.Range(0.0f, 1.0f) * (personalBestPosition - cachedTransform.position)) +
