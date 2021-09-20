@@ -28,7 +28,12 @@ namespace PSO
         public Transform GlobalBestPositionTransform = default;
 
         [NonSerialized]
-        public float     GlobalBestPositionScore     = 0f;
+        public float     GlobalBestPositionScore = 0f;
+
+        [NonSerialized]
+        public float     IterationTimeCount = 0.0f;
+        [NonSerialized]
+        public int       IterationCount      = 0;
 
         [ContextMenu("GetParticles")]
         public void GetParticles()
@@ -52,15 +57,15 @@ namespace PSO
             particles.ForEach(particle => particle.Init());
         }
 
-        float timeCount = 0.0f;
 
         void Update()
         {
-            timeCount += Time.deltaTime;
-            if (timeCount >= DOTWEEN_DURATION)
+            IterationTimeCount += Time.deltaTime;
+            if (IterationTimeCount >= DOTWEEN_DURATION)
             {
                 particles.ForEach(particle => particle.startNextIteration());
-                timeCount = 0.0f;
+                IterationTimeCount = 0.0f;
+                IterationCount++;
             }
         }
 
